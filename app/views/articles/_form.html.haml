@@ -1,0 +1,22 @@
+- if @article.errors.any?
+  %h3 The following errors occured
+  %ul
+    - @article.errors.full_messages.each do |msg|
+      %li
+        = msg
+.row
+  .col-sm-12
+    = form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f|
+      .form-group
+        .control-label.col-sm-2
+          = f.label :title
+        .col-sm-8
+          = f.text_field :title, class: "form-control", placeholder: "Title of the article", autofocus: true
+      .form-group
+        .control-label.col-sm-2
+          = f.label :description
+        .col-sm-8
+          = f.text_area :description, class: "form-control", placeholder: "Body of the article"
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = f.submit class: "btn btn-primary btn-sm"
