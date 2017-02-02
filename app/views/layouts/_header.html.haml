@@ -1,5 +1,5 @@
 %nav.navbar.navbar-default
-  .container-fluid
+  .container
     .navbar-header
       %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
@@ -12,10 +12,18 @@
       %ul.nav.navbar-nav
         %li= link_to "Articles", articles_path
         %li= link_to "Users", users_path
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Actions
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              = link_to "New Article", new_article_path
+        - if logged_in?
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Actions
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                = link_to "New Article", new_article_path
+      .pull-right.signing
+        - if logged_in?          
+          = link_to "#{session[:user_username]}", user_path(session[:user_id]), class: "btn btn-link"
+          = link_to "Logout", session_path(session), class:"btn btn-danger sign_in", method: :delete
+        - else
+          = link_to "Sign in", signin_path, class: "btn btn-default sign_in"
+          = link_to "Sign up", signup_path, class: "btn btn-primary sign_in"

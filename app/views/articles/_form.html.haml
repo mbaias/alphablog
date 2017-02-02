@@ -5,8 +5,11 @@
       %li
         = msg
 .row
-  .col-sm-12
+  .col-sm-offset-3.col-sm-6
     = form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f|
+      .form-group
+        .control-label.col-sm-2
+          = f.hidden_field :user_id, value: @article
       .form-group
         .control-label.col-sm-2
           = f.label :title

@@ -1,0 +1,37 @@
+- if logged_in?
+	You are already in the system
+- else
+	.row
+		.col-sm-offset-3.col-sm-6		
+			%h1 Log In
+			= form_tag(sessions_path, {class: "form-horizontal", role: "form"}) do
+				.form-group
+					.control-label.col-sm-2
+						= label_tag :email
+					.col-sm-8
+						= text_field_tag :email, params[:email], class: "form-control", placeholder: "Enter your email"
+				.form-group
+					.control-label.col-sm-2
+						= label_tag :password
+					.col-sm-8
+						= password_field_tag :password, nil,  class: "form-control", placeholder: "Enter your password"
+				.form-group
+					.col-sm-offset-2.col-sm-2
+						= submit_tag "Log In", class: "btn btn-primary btn-sm"
+
+/ .row
+/ 	.col-sm-offset-3.col-sm-6
+/ 		= form_for(sessions_path,:html => {class: "form-horizontal", role: "form"}) do |f|
+/ 			.form-group
+/ 				.control-label.col-sm-2
+/ 					= f.label_tag :email
+/ 				.col-sm-8
+/ 					= f.text_field :email, class: "form-control", placeholder: "Enter your email"
+/ 			.form-group
+/ 				.control-label.col-sm-2
+/ 					= f.label :password
+/ 				.col-sm-8
+/ 					= f.password_field :password, class: "form-control", placeholder: "Enter your password"
+/ 			.form-group
+/ 				.col-sm-offset-2.col-sm-2
+/ 					= f.submit"Log in", class: "btn btn-primary btn-sm"
